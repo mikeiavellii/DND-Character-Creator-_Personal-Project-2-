@@ -234,7 +234,7 @@
         }
         else if (choice == no.ToLower().Trim())
         {
-          result = true;
+          result = false;
           break;
         }
         else

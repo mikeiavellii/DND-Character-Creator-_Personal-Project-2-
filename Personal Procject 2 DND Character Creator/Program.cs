@@ -1,5 +1,6 @@
-﻿using Validation;
-
+﻿using Personal_Procject_2_DND_Character_Creator;
+using Validation;
+bool getSystemReset = false;
 
 //Dictionaries
 Dictionary<int, string> raceMenu = new Dictionary<int, string>()
@@ -15,34 +16,33 @@ Dictionary<int, string> raceMenu = new Dictionary<int, string>()
   {9, "Tiefling"}
 };
 
-
+List<You> CreatedCharacters = new List<You>();
 //Final Class Variable reside here so I can create an instance once everything is selected by user
 string raceSelect = "";
+string classSelect = "";
 string characterName = "";
+
 
 //Intro
 Console.WriteLine("Welcome weary traveler, I am Azalaf and this is to Personal Project #2: DND Character Creator.\nWhat pray tell is your name?");
-string userName = Validator.GetNormalCasing("");
-Console.Clear();
-Console.WriteLine($"Welcome {userName}. We have a lot to cover so I will dispense with the pleasantries." +
-  $"\nToday, {DateTime.Now}, we will begin constructing your DND character.\n");
+string userName = Validator.GetNormalCasing(""); Console.Clear();
+Console.WriteLine($"Welcome {userName}. We have a lot to cover so I will dispense with the pleasantries." +$"\nToday, {DateTime.Now}, we will begin constructing your DND character.\n");
 
 
-//Loop for race selection
+//Race Selection Section
 bool chooseRace = true;
 while (chooseRace)
 {
-  
-  while (true)
+  while (chooseRace = true) 
   {
     Console.WriteLine("Let's start off with picking your race. Enter a number below to choose between the nine listed \nto see more information about them or pick 0 to pick one at random.\n");
-
     foreach (KeyValuePair<int, string> kvp in raceMenu)
     {
       Console.WriteLine($"{kvp.Key}. { kvp.Value}");
     }
     Console.WriteLine("0. Random");
     
+    //selection time
     int raceChoiceA = Validator.GetUserNumberIntMsg($"Please make a selection.");
     if (raceMenu.ContainsKey(raceChoiceA))
     {
@@ -68,13 +68,38 @@ while (chooseRace)
   }
   while (chooseRace)
   {
+    //confirm choice or loop back thru
     chooseRace = Validator.MoveOn($"\nYou have selected {raceSelect}.\nTo confirm your race selection, select \"Yes\". To select another race, select \"No\".", "Yes", "No");
   }
   //select No still continues
 }
 
 
+//Class Selection Section
+//Consult for descriptions: https://www.dndbeyond.com/characters/92630477/builder/class/choose
 
+
+//Name Selection Section
+
+
+//Outro
+
+//Final Housing
+//CreatedCharacters.Add(new You(raceSelect, classSelect, characterName));
+
+///Possible future inclusions
+///-    Include stats possibly - consult for info: https://www.dndbeyond.com/characters/92630477/builder/ability-scores/manage
+///     *   Roll for stats
+///     *   Stat arrays
+/// 
+///-    If CreatedCharacters.Count >1 activate loop that asks if they'd like to display saved characters. Final Housing can become a string 
+///     associated with that character and spot in seperate list would need display character method
+///
+
+
+//Loop back through
+//For entire reloop through if person says they want to make another character, maybe add a while loop that starts off false and if the player selects,
+//it triggers a method that swaps the options of all bools back to their initial state so the program loops call it getSystemReset
 
 //Methods
 
