@@ -2,6 +2,10 @@
 {
   public class Validator
   {
+
+    ///Get UserNumbers
+    ///
+    //int
     public static int GetUserNumberInt()
     {
       int result = 0;
@@ -14,7 +18,6 @@
 
       return result;
     }
-
     public static int GetUserNumberIntMsg(string msg)
     {
       int result = 0;
@@ -27,31 +30,7 @@
 
       return result;
     }
-
-    public static string GetNormalCasing(string s)
-    {
-      string input = Console.ReadLine().Trim().ToLower();
-
-      string normalCasing = input.Substring(0, 1).ToUpper() + input.Substring(1);
-
-      return $"{normalCasing}";
-    }
-    public static int GetNumberInRangeInt(int min)
-    {
-      int result = int.MinValue;
-      while (result <= min)
-      {
-        result = GetUserNumberInt();
-        if (result <= min)
-        {
-          Console.WriteLine($"Number must be greater or equal to {min}");
-        }
-      }
-
-      return result;
-    }
-
-
+    //non-ints
     public static double GetUserNumberDouble()
     {
       double result = 0;
@@ -64,23 +43,6 @@
 
       return result;
     }
-
-
-    public static double GetNumberInRangeDouble(double min)
-    {
-      double result = double.MinValue;
-      while (result <= min)
-      {
-        result = GetUserNumberDouble();
-        if (result <= min)
-        {
-          Console.WriteLine($"Number must be greater or equal to {min}");
-        }
-      }
-
-      return result;
-    }
-
     public static decimal GetUserNumberDecimal()
     {
       decimal result = 0;
@@ -93,23 +55,6 @@
 
       return result;
     }
-
-
-    public static decimal GetNumberInRangeDecimal(decimal min)
-    {
-      decimal result = decimal.MinValue;
-      while (result <= min)
-      {
-        result = GetUserNumberDecimal();
-        if (result <= min)
-        {
-          Console.WriteLine($"Number must be greater or equal to {min}");
-        }
-      }
-
-      return result;
-    }
-
     public static float GetUserNumberFloat()
     {
       float result = 0;
@@ -124,6 +69,91 @@
     }
 
 
+    //__________________________________________________________________________________________________________________
+
+
+    ///Get Number in Ranges
+    ///
+    //int
+    public static int GetNumberInRangeInt(int min)
+    {
+      int result = int.MinValue;
+      while (result <= min)
+      {
+        result = GetUserNumberInt();
+        if (result <= min)
+        {
+          Console.WriteLine($"Number must be greater or equal to {min}");
+        }
+      }
+
+      return result;
+    }
+    public static int GetNumberInRangeIntMinMax(int min, int max)
+    {
+      int result = int.MinValue;
+      while (result < min || result > max)
+      {
+        result = GetUserNumberInt();
+        if (result < min)
+        {
+          Console.WriteLine($"Number must be greater or equal to {min}");
+        }
+        else if (result > max)
+        {
+          Console.WriteLine($"Number must be less or equal to {max}");
+        }
+      }
+
+      return result;
+    }
+    public static int GetNumberInRangeIntMinMaxMsg(string msg, string minMaxM, int min, int max)
+    {
+      int result = int.MinValue;
+      while (result < min || result > max)
+      {
+        result = GetUserNumberIntMsg($"{msg}");
+        if (result < min)
+        {
+          Console.WriteLine($"{result} is an invalid selection. {minMaxM} {min} - {max}."); //Number must be greater or equal to
+        }
+        else if (result > max)
+        {
+          Console.WriteLine($"{result} is an invalid selection. {minMaxM} {min} - {max}.");// Number must be less or equal
+        }
+      }
+
+      return result;
+    } 
+    //non-ints
+    public static double GetNumberInRangeDouble(double min)
+    {
+      double result = double.MinValue;
+      while (result <= min)
+      {
+        result = GetUserNumberDouble();
+        if (result <= min)
+        {
+          Console.WriteLine($"Number must be greater or equal to {min}");
+        }
+      }
+
+      return result;
+    }
+    public static decimal GetNumberInRangeDecimal(decimal min)
+    {
+      decimal result = decimal.MinValue;
+      while (result <= min)
+      {
+        result = GetUserNumberDecimal();
+        if (result <= min)
+        {
+          Console.WriteLine($"Number must be greater or equal to {min}");
+        }
+      }
+
+      return result;
+    }
     public static float GetNumberInRangeFloat(float min)
     {
       float result = float.MinValue;
@@ -139,6 +169,12 @@
       return result;
     }
 
+
+    //__________________________________________________________________________________________________________________
+
+
+    ///GetContinues
+    ///
     public static bool GetContinue()
     {
       bool result = true;
@@ -164,7 +200,6 @@
       }
       return result;
     }
-
     //overloaded
     public static bool GetContinue(string msg)
     {
@@ -191,7 +226,6 @@
       }
       return result;
     }
-
     //overloaded
     public static bool GetContinue(string msg, string yes, string no)
     {
@@ -234,7 +268,7 @@
         }
         else if (choice == no.ToLower().Trim())
         {
-          result = false;
+          result = true;
           break;
         }
         else
@@ -246,14 +280,30 @@
       return result;
     }
 
+
+    //__________________________________________________________________________________________________________________
+
+
+    /// No Category
+    /// 
     public static int GetRandom(int x)
     {
       Random r = new Random();
       return r.Next(1, 9);
     }
+    public static int GetRandomEditMinMax(int x, int min, int max)
+    {
+      Random r = new Random();
+      return r.Next(min, max);
+    }
+    public static string GetNormalCasing(string s)
+    {
+      string input = Console.ReadLine().Trim().ToLower();
 
+      string normalCasing = input.Substring(0, 1).ToUpper() + input.Substring(1);
 
-
+      return $"{normalCasing}";
+    }
 
 
   }
